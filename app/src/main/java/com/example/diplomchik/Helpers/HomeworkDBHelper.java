@@ -19,6 +19,13 @@ public class HomeworkDBHelper extends SQLiteOpenHelper {
                     HomeworkContract.HomeworkEntry.COLUMN_COMPLETED + " INTEGER DEFAULT 0 )";
 
 
+    private static final String SQL_CREATE_WEEKLY_SCHEDULE_TABLE =
+            "CREATE TABLE " + HomeworkContract.WeeklyScheduleEntry.TABLE_NAME + " (" +
+                    HomeworkContract.WeeklyScheduleEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY + " TEXT NOT NULL," +
+                    HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT + " TEXT NOT NULL," +
+                    HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME + " TEXT NOT NULL)";
+
     public HomeworkDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -27,6 +34,8 @@ public class HomeworkDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_HOMEWORK_TABLE);
+
+        db.execSQL(SQL_CREATE_WEEKLY_SCHEDULE_TABLE);
     }
     // Обновление таблицы
     @Override

@@ -33,11 +33,29 @@ public class MainActivity extends AppCompatActivity {
     private void insertTestData() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(HomeworkContract.HomeworkEntry.COLUMN_SUBJECT, "Математика");
         values.put(HomeworkContract.HomeworkEntry.COLUMN_DESCRIPTION, "Выполнить упражнения 1-10, страница 50.");
         values.put(HomeworkContract.HomeworkEntry.COLUMN_DUE_DATE, "2024-04-30");
         values.put(HomeworkContract.HomeworkEntry.COLUMN_COMPLETED, 0); // Значение по умолчанию для нового столбца "completed"
         db.insert(HomeworkContract.HomeworkEntry.TABLE_NAME, null, values);
+
+
+
+        addScheduleData(db, "Monday", "Math", "8:00 AM");
+        addScheduleData(db, "Tuesday", "Physics", "9:00 AM");
+        addScheduleData(db, "Wednesday", "Chemistry", "10:00 AM");
+        addScheduleData(db, "Thursday", "History", "11:00 AM");
+        addScheduleData(db, "Friday", "English", "12:00 PM");
+    }
+
+
+    private void addScheduleData(SQLiteDatabase db, String day, String subject, String time) {
+        ContentValues values = new ContentValues();
+        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY, day);
+        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT, subject);
+        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME, time);
+        db.insert(HomeworkContract.WeeklyScheduleEntry.TABLE_NAME, null, values);
     }
 
     private void displayHomework() {
