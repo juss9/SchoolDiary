@@ -1,9 +1,13 @@
 package com.example.diplomchik;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Выводим данные на экран
         displayHomework();
+
+        Button button = findViewById(R.id.but_shedule);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shedule_win();
+            }
+        });
+
     }
 
     private void insertTestData() {
@@ -41,23 +54,50 @@ public class MainActivity extends AppCompatActivity {
         db.insert(HomeworkContract.HomeworkEntry.TABLE_NAME, null, values);
 
 
-
+        // Добавляем записи в таблицу расписания на неделю
         addScheduleData(db, "Monday", "Math", "8:00 AM");
-        addScheduleData(db, "Tuesday", "Physics", "9:00 AM");
-        addScheduleData(db, "Wednesday", "Chemistry", "10:00 AM");
+        addScheduleData(db, "Monday", "Physics", "9:00 AM");
+        addScheduleData(db, "Tuesday", "Chemistry", "10:00 AM");
+        addScheduleData(db, "Tuesday", "History", "11:00 AM");
+        addScheduleData(db, "Wednesday", "English", "12:00 PM");
+        addScheduleData(db, "Wednesday", "Biology", "1:00 PM");
         addScheduleData(db, "Thursday", "History", "11:00 AM");
+        addScheduleData(db, "Thursday", "Math", "11:00 AM");
         addScheduleData(db, "Friday", "English", "12:00 PM");
+        addScheduleData(db, "Friday", "English", "13:00 PM");
+        addScheduleData(db, "Friday", "English", "14:00 PM");
+
+
     }
 
 
     private void addScheduleData(SQLiteDatabase db, String day, String subject, String time) {
-        ContentValues values = new ContentValues();
-        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY, day);
-        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT, subject);
-        values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME, time);
-        db.insert(HomeworkContract.WeeklyScheduleEntry.TABLE_NAME, null, values);
+        Cursor cursor = db.query(
+                HomeworkContract.WeeklyScheduleEntry.TABLE_NAME,
+                null,
+                HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY + " = ? AND " +
+                        HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT + " = ? AND " +
+                        HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME + " = ?",
+                new String[]{day, subject, time},
+                null,
+                null,
+                null
+        );
+
+        if (cursor.getCount() == 0) {
+            // Если записи с такими значениями нет, добавляем новую запись в базу данных
+            ContentValues values = new ContentValues();
+            values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY, day);
+            values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT, subject);
+            values.put(HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME, time);
+            db.insert(HomeworkContract.WeeklyScheduleEntry.TABLE_NAME, null, values);
+        }
+
+        // Закрываем курсор после использования
+        cursor.close();
     }
 
+    @SuppressLint("SetTextI18n")
     private void displayHomework() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {
@@ -116,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
             layout.addView(itemView);
         }
         cursor.close();
+
+
     }
 
     private void updateHomeworkStatus(long id, boolean isCompleted) {
@@ -128,5 +170,11 @@ public class MainActivity extends AppCompatActivity {
     private void deleteHomework(long id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(HomeworkContract.HomeworkEntry.TABLE_NAME, HomeworkContract.HomeworkEntry._ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+
+    private void shedule_win(){
+        Intent intent = new Intent(this, ScheduleActivity.class);
+        startActivity(intent);
     }
 }

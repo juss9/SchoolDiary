@@ -1,14 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- activity_weekly_schedule.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_navigation">
+
+        <LinearLayout
+            android:id="@+id/layout_weekly_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+
+    </ScrollView>
+
     <LinearLayout
-        android:id="@+id/layout_weekly_schedule"
+        android:id="@+id/layout_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_previous_week"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:text="Previous Week" />
+
+        <TextView
+            android:id="@+id/textView_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Week 1" />
+
+        <Button
+            android:id="@+id/btn_next_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next Week" />
 
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>

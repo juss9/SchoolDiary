@@ -13,8 +13,8 @@ public final class HomeworkContract {
         public static final String COLUMN_COMPLETED = "completed";
     }
 
-    // В классе HomeworkContract добавим новый внутренний класс для представления таблицы с расписанием на неделю
-    public static class WeeklyScheduleEntry implements BaseColumns {
+    // добавим новый внутренний класс для представления таблицы с расписанием на неделю
+    public static final class WeeklyScheduleEntry implements BaseColumns {
         public static final String TABLE_NAME = "weekly_schedule";
         public static final String COLUMN_DAY = "day";
         public static final String COLUMN_SUBJECT = "subject";

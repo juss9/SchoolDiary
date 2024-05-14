@@ -42,5 +42,8 @@ public class HomeworkDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + HomeworkContract.HomeworkEntry.TABLE_NAME);
         onCreate(db);
+
+        db.execSQL("DROP TABLE IF EXISTS " +HomeworkContract.WeeklyScheduleEntry.TABLE_NAME);
+        onCreate(db);
     }
 }
