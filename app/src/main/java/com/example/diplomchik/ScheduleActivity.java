@@ -10,77 +10,69 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.diplomchik.Helpers.HomeworkContract;
-import com.example.diplomchik.Helpers.HomeworkDBHelper;
+import com.example.diplomchik.Helpers.DBContract;
+import com.example.diplomchik.Helpers.DBHelper;
+
 
 public class ScheduleActivity extends AppCompatActivity {
 
-    private HomeworkDBHelper dbHelper;
-    int currentWeek = 1;
+    private DBHelper dbHelper;
+    private int currentSemester = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        dbHelper = new HomeworkDBHelper(this);
+        dbHelper = new DBHelper(this);
 
-        displayWeeklySchedule();
-        Button btnPreviousWeek = findViewById(R.id.btn_previous_week);
-        Button btnNextWeek = findViewById(R.id.btn_next_week);
-        TextView textViewWeek = findViewById(R.id.textView_week);
+        // Отображаем расписание для текущего семестра
+        displayWeeklySchedule(currentSemester);
 
-         // Начнем с первой недели
+        // Обработчики нажатий для кнопок переключения семестров
+        Button btnSemester1 = findViewById(R.id.btn_semester_1);
+        Button btnSemester2 = findViewById(R.id.btn_semester_2);
 
-        btnPreviousWeek.setOnClickListener(new View.OnClickListener() {
+        btnSemester1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentWeek > 1) {
-                    currentWeek--;
-                    textViewWeek.setText("Week " + currentWeek);
-                    displayWeeklySchedule(); // Обновляем расписание для предыдущей недели
-                }
+                currentSemester = 1;
+                displayWeeklySchedule(currentSemester); // Обновляем расписание для первого семестра
             }
         });
 
-        btnNextWeek.setOnClickListener(new View.OnClickListener() {
+        btnSemester2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Предположим, что у нас есть ограничение на количество недель
-                int maxWeeks = 10; // Например, допустим 10 недель
-                if (currentWeek < maxWeeks) {
-                    currentWeek++;
-                    textViewWeek.setText("Week " + currentWeek);
-                    displayWeeklySchedule(); // Обновляем расписание для следующей недели
-                }
+                currentSemester = 2;
+                displayWeeklySchedule(currentSemester); // Обновляем расписание для второго семестра
             }
         });
-
     }
 
-    private void displayWeeklySchedule() {
+    private void displayWeeklySchedule(int semester) {
         LinearLayout layout = findViewById(R.id.layout_weekly_schedule);
         layout.removeAllViews(); // Очищаем макет перед добавлением данных
 
-        // Загрузка расписания из базы данных
+        // Загружаем расписание из базы данных для указанного семестра
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(
-                HomeworkContract.WeeklyScheduleEntry.TABLE_NAME,
+                DBContract.WeeklyScheduleEntry.TABLE_NAME,
                 null,
-                null,
-                null,
+                DBContract.WeeklyScheduleEntry.COLUMN_SEMESTER + " = ?",
+                new String[]{String.valueOf(semester)},
                 null,
                 null,
                 null
         );
-
         String currentDay = "";
         LinearLayout dayLayout = null;
 
-        // Проходим по каждой записи и отображаем ее на экране
+        // Отображаем расписание на экране
         while (cursor.moveToNext()) {
-            String day = cursor.getString(cursor.getColumnIndexOrThrow(HomeworkContract.WeeklyScheduleEntry.COLUMN_DAY));
-            String subject = cursor.getString(cursor.getColumnIndexOrThrow(HomeworkContract.WeeklyScheduleEntry.COLUMN_SUBJECT));
-            String time = cursor.getString(cursor.getColumnIndexOrThrow(HomeworkContract.WeeklyScheduleEntry.COLUMN_TIME));
+            String day = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.WeeklyScheduleEntry.COLUMN_DAY));
+            String subject = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.WeeklyScheduleEntry.COLUMN_SUBJECT));
+            String time = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.WeeklyScheduleEntry.COLUMN_TIME));
 
             if (!day.equals(currentDay)) {
                 // Создаем новый LinearLayout для нового дня недели
@@ -101,15 +93,13 @@ public class ScheduleActivity extends AppCompatActivity {
                 layout.addView(dayLayout);
                 currentDay = day;
             }
-
-            // Создаем TextView для предмета и времени и добавляем в LinearLayout для текущего дня недели
-            TextView subjectTextView = new TextView(this);
-            subjectTextView.setText(subject + " - " + time);
-            dayLayout.addView(subjectTextView);
+            // Создаем TextView для отображения записи расписания
+            TextView scheduleTextView = new TextView(this);
+            scheduleTextView.setText(day + ": " + subject + " - " + time);
+            layout.addView(scheduleTextView);
         }
 
         // Закрываем курсор после использования
         cursor.close();
     }
-
 }

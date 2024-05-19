@@ -1,4 +1,4 @@
-<!-- activity_weekly_schedule.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp" />
+            android:padding="30dp" />
 
     </ScrollView>
 
@@ -25,23 +25,18 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/btn_previous_week"
-            android:layout_width="114dp"
-            android:layout_height="wrap_content"
-            android:text="Previous Week" />
-
-        <TextView
-            android:id="@+id/textView_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Week 1" />
 
         <Button
-            android:id="@+id/btn_next_week"
+            android:id="@+id/btn_semester_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Week" />
+            android:text="Semester 1" />
+
+        <Button
+            android:id="@+id/btn_semester_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Semester 2" />
 
     </LinearLayout>
 

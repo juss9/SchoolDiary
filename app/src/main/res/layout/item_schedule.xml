@@ -3,27 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginBottom="16dp">
+    >
 
     <TextView
         android:id="@+id/textViewDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginBottom="4dp" />
+        android:textStyle="italic"
+        android:textSize="22sp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/textViewSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textColor="@android:color/darker_gray" />
 
 </LinearLayout>
