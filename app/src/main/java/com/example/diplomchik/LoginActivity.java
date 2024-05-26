@@ -68,15 +68,12 @@ public class LoginActivity extends AppCompatActivity {
                     null
             );
 
-            if (cursor != null) {
-                Log.d(TAG, "Cursor count: " + cursor.getCount());
-                if (cursor.getCount() > 0) {
-                    cursor.moveToFirst();
-                    String dbLogin = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.StudentEntry.COLUMN_LOGIN));
-                    String dbPassword = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.StudentEntry.COLUMN_PASSWORD));
-                    Log.d(TAG, "DB Login: " + dbLogin + ", DB Password: " + dbPassword);
-                    return true;
-                }
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                String dbLogin = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.StudentEntry.COLUMN_LOGIN));
+                String dbPassword = cursor.getString(cursor.getColumnIndexOrThrow(DBContract.StudentEntry.COLUMN_PASSWORD));
+                Log.d(TAG, "DB Login: " + dbLogin + ", DB Password: " + dbPassword);
+                return true;
             }
             return false;
         } catch (Exception e) {

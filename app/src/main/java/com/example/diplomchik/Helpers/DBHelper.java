@@ -71,15 +71,25 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void insertStudentData(SQLiteDatabase db) {
-        ContentValues values = new ContentValues();
-        values.put(DBContract.StudentEntry.COLUMN_LOGIN, "I");
-        values.put(DBContract.StudentEntry.COLUMN_PASSWORD, "12");
-        values.put(DBContract.StudentEntry.COLUMN_NAME, "Иванов Иван Иванович");
-        values.put(DBContract.StudentEntry.COLUMN_CLASS, "10A");
-        values.put(DBContract.StudentEntry.COLUMN_BIRTHDATE, "01.01.2005");
+        ContentValues values1 = new ContentValues();
+        values1.put(DBContract.StudentEntry.COLUMN_LOGIN, "I");
+        values1.put(DBContract.StudentEntry.COLUMN_PASSWORD, "12");
+        values1.put(DBContract.StudentEntry.COLUMN_NAME, "Иванов Иван Иванович");
+        values1.put(DBContract.StudentEntry.COLUMN_CLASS, "10A");
+        values1.put(DBContract.StudentEntry.COLUMN_BIRTHDATE, "01.01.2005");
 
-        db.insert(DBContract.StudentEntry.TABLE_NAME, null, values);
+        db.insert(DBContract.StudentEntry.TABLE_NAME, null, values1);
+
+        ContentValues values2 = new ContentValues();
+        values2.put(DBContract.StudentEntry.COLUMN_LOGIN, "P");
+        values2.put(DBContract.StudentEntry.COLUMN_PASSWORD, "2");
+        values2.put(DBContract.StudentEntry.COLUMN_NAME, "Петров Иван Петрович");
+        values2.put(DBContract.StudentEntry.COLUMN_CLASS, "10A");
+        values2.put(DBContract.StudentEntry.COLUMN_BIRTHDATE, "01.01.2005");
+
+        db.insert(DBContract.StudentEntry.TABLE_NAME, null, values2);
     }
+
 
     public void addRating(String subject, int semester, int rating) {
         SQLiteDatabase db = this.getWritableDatabase();
