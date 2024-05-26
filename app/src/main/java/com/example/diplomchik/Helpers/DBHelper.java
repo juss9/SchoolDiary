@@ -7,8 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "Diplom.db";
+    private static final String DATABASE_NAME = "Diplomchick.db";
     private static final int DATABASE_VERSION = 3;
+//    private Context context;
 
     // Таблица домашних заданий
     private static final String SQL_CREATE_HOMEWORK_TABLE =
@@ -49,6 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+//        this.context = context;
     }
 
     @Override
@@ -58,7 +60,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_STUDENT_TABLE);
         db.execSQL(SQL_CREATE_RATING_TABLE);
         insertStudentData(db);
-        addRatingsForFirstSemester();
+
+        addRatingsForFirstSemester(db);
     }
 
     @Override
@@ -72,108 +75,98 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void insertStudentData(SQLiteDatabase db) {
         ContentValues values1 = new ContentValues();
-        values1.put(DBContract.StudentEntry.COLUMN_LOGIN, "I");
+        values1.put(DBContract.StudentEntry.COLUMN_LOGIN, "i");
         values1.put(DBContract.StudentEntry.COLUMN_PASSWORD, "12");
         values1.put(DBContract.StudentEntry.COLUMN_NAME, "Иванов Иван Иванович");
         values1.put(DBContract.StudentEntry.COLUMN_CLASS, "10A");
         values1.put(DBContract.StudentEntry.COLUMN_BIRTHDATE, "01.01.2005");
 
         db.insert(DBContract.StudentEntry.TABLE_NAME, null, values1);
-
-        ContentValues values2 = new ContentValues();
-        values2.put(DBContract.StudentEntry.COLUMN_LOGIN, "P");
-        values2.put(DBContract.StudentEntry.COLUMN_PASSWORD, "2");
-        values2.put(DBContract.StudentEntry.COLUMN_NAME, "Петров Иван Петрович");
-        values2.put(DBContract.StudentEntry.COLUMN_CLASS, "10A");
-        values2.put(DBContract.StudentEntry.COLUMN_BIRTHDATE, "01.01.2005");
-
-        db.insert(DBContract.StudentEntry.TABLE_NAME, null, values2);
     }
 
-
-    public void addRating(String subject, int semester, int rating) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void addRating(SQLiteDatabase db, String subject, int semester, int rating) {
         ContentValues values = new ContentValues();
         values.put(DBContract.RatingsEntry.COLUMN_SUBJECT, subject);
         values.put(DBContract.RatingsEntry.COLUMN_SEMESTER, semester);
         values.put(DBContract.RatingsEntry.COLUMN_RATING, rating);
         db.insert(DBContract.RatingsEntry.TABLE_NAME, null, values);
-        db.close();
     }
 
+    public void addRatingsForFirstSemester(SQLiteDatabase db) {
+        addRating(db, "Math", 1, 4);
+        addRating(db, "Math", 1, 5);
+        addRating(db, "Math", 1, 3);
+        addRating(db, "Math", 1, 4);
+        addRating(db, "Math", 1, 5);
 
-    public void addRatingsForFirstSemester() {
-        addRating("Math", 1, 4);
-        addRating("Math", 1, 5);
-        addRating("Math", 1, 3);
-        addRating("Math", 1, 4);
-        addRating("Math", 1, 5);
+        addRating(db, "Physics", 1, 5);
+        addRating(db, "Physics", 1, 4);
+        addRating(db, "Physics", 1, 3);
+        addRating(db, "Physics", 1, 5);
+        addRating(db, "Physics", 1, 4);
 
-        addRating("Physics", 1, 5);
-        addRating("Physics", 1, 4);
-        addRating("Physics", 1, 3);
-        addRating("Physics", 1, 5);
-        addRating("Physics", 1, 4);
+        addRating(db, "Chemistry", 1, 3);
+        addRating(db, "Chemistry", 1, 4);
+        addRating(db, "Chemistry", 1, 5);
+        addRating(db, "Chemistry", 1, 3);
+        addRating(db, "Chemistry", 1, 4);
 
-        addRating("Chemistry", 1, 3);
-        addRating("Chemistry", 1, 4);
-        addRating("Chemistry", 1, 5);
-        addRating("Chemistry", 1, 3);
-        addRating("Chemistry", 1, 4);
+        addRating(db, "History", 1, 5);
+        addRating(db, "History", 1, 3);
+        addRating(db, "History", 1, 4);
+        addRating(db, "History", 1, 5);
+        addRating(db, "History", 1, 3);
 
-        addRating("History", 1, 5);
-        addRating("History", 1, 3);
-        addRating("History", 1, 4);
-        addRating("History", 1, 5);
-        addRating("History", 1, 3);
+        addRating(db, "Biology", 1, 3);
+        addRating(db, "Biology", 1, 5);
+        addRating(db, "Biology", 1, 4);
+        addRating(db, "Biology", 1, 3);
+        addRating(db, "Biology", 1, 5);
 
-        addRating("Biology", 1, 3);
-        addRating("Biology", 1, 5);
-        addRating("Biology", 1, 4);
-        addRating("Biology", 1, 3);
-        addRating("Biology", 1, 5);
+        addRating(db, "English", 1, 4);
+        addRating(db, "English", 1, 3);
+        addRating(db, "English", 1, 5);
+        addRating(db, "English", 1, 4);
+        addRating(db, "English", 1, 3);
 
-        addRating("English", 1, 4);
-        addRating("English", 1, 3);
-        addRating("English", 1, 5);
-        addRating("English", 1, 4);
-        addRating("English", 1, 3);
+        addRating(db, "Geography", 1, 5);
+        addRating(db, "Geography", 1, 3);
+        addRating(db, "Geography", 1, 4);
+        addRating(db, "Geography", 1, 5);
+        addRating(db, "Geography", 1, 3);
 
-        addRating("Geography", 1, 5);
-        addRating("Geography", 1, 3);
-        addRating("Geography", 1, 4);
-        addRating("Geography", 1, 5);
-        addRating("Geography", 1, 3);
+        addRating(db, "Computer Science", 1, 3);
+        addRating(db, "Computer Science", 1, 4);
+        addRating(db, "Computer Science", 1, 5);
+        addRating(db, "Computer Science", 1, 3);
+        addRating(db, "Computer Science", 1, 4);
 
-        addRating("Computer Science", 1, 3);
-        addRating("Computer Science", 1, 4);
-        addRating("Computer Science", 1, 5);
-        addRating("Computer Science", 1, 3);
-        addRating("Computer Science", 1, 4);
+        addRating(db, "Physical Education", 1, 4);
+        addRating(db, "Physical Education", 1, 5);
+        addRating(db, "Physical Education", 1, 3);
+        addRating(db, "Physical Education", 1, 4);
+        addRating(db, "Physical Education", 1, 5);
 
-        addRating("Physical Education", 1, 4);
-        addRating("Physical Education", 1, 5);
-        addRating("Physical Education", 1, 3);
-        addRating("Physical Education", 1, 4);
-        addRating("Physical Education", 1, 5);
+        addRating(db, "Art", 1, 3);
+        addRating(db, "Art", 1, 4);
+        addRating(db, "Art", 1, 5);
+        addRating(db, "Art", 1, 3);
+        addRating(db, "Art", 1, 4);
 
-        addRating("Art", 1, 3);
-        addRating("Art", 1, 4);
-        addRating("Art", 1, 5);
-        addRating("Art", 1, 3);
-        addRating("Art", 1, 4);
+        addRating(db, "Music", 1, 5);
+        addRating(db, "Music", 1, 3);
+        addRating(db, "Music", 1, 4);
+        addRating(db, "Music", 1, 5);
+        addRating(db, "Music", 1, 3);
 
-        addRating("Music", 1, 5);
-        addRating("Music", 1, 3);
-        addRating("Music", 1, 4);
-        addRating("Music", 1, 5);
-        addRating("Music", 1, 3);
-
-        addRating("Drama", 1, 4);
-        addRating("Drama", 1, 5);
-        addRating("Drama", 1, 3);
-        addRating("Drama", 1, 4);
-        addRating("Drama", 1, 5);
+        addRating(db, "Drama", 1, 4);
+        addRating(db, "Drama", 1, 5);
+        addRating(db, "Drama", 1, 3);
+        addRating(db, "Drama", 1, 4);
+        addRating(db, "Drama", 1, 5);
     }
 
+//    public void deleteDatabase() {
+//        context.deleteDatabase(DATABASE_NAME);
+//    }
 }

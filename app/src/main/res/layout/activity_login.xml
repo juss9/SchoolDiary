@@ -1,34 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#E6E6FA"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/ico"
+        android:layout_width="299dp"
+        android:layout_height="335dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/education_learning_29_svgrepo_com" />
 
     <EditText
         android:id="@+id/editTextLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="244dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="Логин"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:textColor="#000000"
+             />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="244dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="Пароль"
         android:inputType="textPassword"
-        android:layout_below="@id/editTextLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:textColor="#000000"
+        />
+
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="244dp"
         android:layout_height="wrap_content"
         android:text="Войти"
-        android:layout_below="@id/editTextPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
-</RelativeLayout>
+
+        android:textColor="#FFFFFF"
+        android:padding="10dp" />
+</LinearLayout>
