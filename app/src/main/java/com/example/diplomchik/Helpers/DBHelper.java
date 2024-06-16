@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Diplomchick.db";
-    private static final int DATABASE_VERSION = 3;
-//    private Context context;
+    private static final int DATABASE_VERSION = 4;
+    private Context context;
 
     // Таблица домашних заданий
     private static final String SQL_CREATE_HOMEWORK_TABLE =
@@ -93,77 +93,98 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void addRatingsForFirstSemester(SQLiteDatabase db) {
-        addRating(db, "Math", 1, 4);
-        addRating(db, "Math", 1, 5);
-        addRating(db, "Math", 1, 3);
-        addRating(db, "Math", 1, 4);
-        addRating(db, "Math", 1, 5);
+        addRating(db, "Математика", 1, 4);
+        addRating(db, "Математика", 1, 5);
+        addRating(db, "Математика", 1, 3);
+        addRating(db, "Математика", 1, 4);
+        addRating(db, "Математика", 1, 5);
 
-        addRating(db, "Physics", 1, 5);
-        addRating(db, "Physics", 1, 4);
-        addRating(db, "Physics", 1, 3);
-        addRating(db, "Physics", 1, 5);
-        addRating(db, "Physics", 1, 4);
+        addRating(db, "Физика", 1, 5);
+        addRating(db, "Физика", 1, 4);
+        addRating(db, "Физика", 1, 3);
+        addRating(db, "Физика", 1, 5);
+        addRating(db, "Физика", 1, 4);
 
-        addRating(db, "Chemistry", 1, 3);
-        addRating(db, "Chemistry", 1, 4);
-        addRating(db, "Chemistry", 1, 5);
-        addRating(db, "Chemistry", 1, 3);
-        addRating(db, "Chemistry", 1, 4);
+        addRating(db, "Химия", 1, 3);
+        addRating(db, "Химия", 1, 4);
+        addRating(db, "Химия", 1, 5);
+        addRating(db, "Химия", 1, 3);
+        addRating(db, "Химия", 1, 4);
 
-        addRating(db, "History", 1, 5);
-        addRating(db, "History", 1, 3);
-        addRating(db, "History", 1, 4);
-        addRating(db, "History", 1, 5);
-        addRating(db, "History", 1, 3);
+        addRating(db, "История", 1, 5);
+        addRating(db, "История", 1, 3);
+        addRating(db, "История", 1, 4);
+        addRating(db, "История", 1, 5);
+        addRating(db, "История", 1, 3);
 
-        addRating(db, "Biology", 1, 3);
-        addRating(db, "Biology", 1, 5);
-        addRating(db, "Biology", 1, 4);
-        addRating(db, "Biology", 1, 3);
-        addRating(db, "Biology", 1, 5);
+        addRating(db, "Биология", 1, 3);
+        addRating(db, "Биология", 1, 5);
+        addRating(db, "Биология", 1, 4);
+        addRating(db, "Биология", 1, 3);
+        addRating(db, "Биология", 1, 5);
 
-        addRating(db, "English", 1, 4);
-        addRating(db, "English", 1, 3);
-        addRating(db, "English", 1, 5);
-        addRating(db, "English", 1, 4);
-        addRating(db, "English", 1, 3);
+        addRating(db, "Английский яз.", 1, 4);
+        addRating(db, "Английский яз.", 1, 3);
+        addRating(db, "Английский яз.", 1, 5);
+        addRating(db, "Английский яз.", 1, 4);
+        addRating(db, "Английский яз.", 1, 3);
 
-        addRating(db, "Geography", 1, 5);
-        addRating(db, "Geography", 1, 3);
-        addRating(db, "Geography", 1, 4);
-        addRating(db, "Geography", 1, 5);
-        addRating(db, "Geography", 1, 3);
+        addRating(db, "География", 1, 5);
+        addRating(db, "География", 1, 3);
+        addRating(db, "География", 1, 4);
+        addRating(db, "География", 1, 5);
+        addRating(db, "География", 1, 3);
 
-        addRating(db, "Computer Science", 1, 3);
-        addRating(db, "Computer Science", 1, 4);
-        addRating(db, "Computer Science", 1, 5);
-        addRating(db, "Computer Science", 1, 3);
-        addRating(db, "Computer Science", 1, 4);
+        addRating(db, "Информатика", 1, 3);
+        addRating(db, "Информатика", 1, 4);
+        addRating(db, "Информатика", 1, 5);
+        addRating(db, "Информатика", 1, 3);
+        addRating(db, "Информатика", 1, 4);
 
-        addRating(db, "Physical Education", 1, 4);
-        addRating(db, "Physical Education", 1, 5);
-        addRating(db, "Physical Education", 1, 3);
-        addRating(db, "Physical Education", 1, 4);
-        addRating(db, "Physical Education", 1, 5);
+        addRating(db, "Физ-ра", 1, 4);
+        addRating(db, "Физ-ра", 1, 5);
+        addRating(db, "Физ-ра", 1, 3);
+        addRating(db, "Физ-ра", 1, 4);
+        addRating(db, "Физ-ра", 1, 5);
 
-        addRating(db, "Art", 1, 3);
-        addRating(db, "Art", 1, 4);
-        addRating(db, "Art", 1, 5);
-        addRating(db, "Art", 1, 3);
-        addRating(db, "Art", 1, 4);
+        addRating(db, "ИЗО", 1, 3);
+        addRating(db, "ИЗО", 1, 4);
+        addRating(db, "ИЗО", 1, 5);
+        addRating(db, "ИЗО", 1, 3);
+        addRating(db, "ИЗО", 1, 4);
 
-        addRating(db, "Music", 1, 5);
-        addRating(db, "Music", 1, 3);
-        addRating(db, "Music", 1, 4);
-        addRating(db, "Music", 1, 5);
-        addRating(db, "Music", 1, 3);
+        addRating(db, "Музыка", 1, 5);
+        addRating(db, "Музыка", 1, 3);
+        addRating(db, "Музыка", 1, 4);
+        addRating(db, "Музыка", 1, 5);
+        addRating(db, "Музыка", 1, 3);
 
-        addRating(db, "Drama", 1, 4);
-        addRating(db, "Drama", 1, 5);
-        addRating(db, "Drama", 1, 3);
-        addRating(db, "Drama", 1, 4);
-        addRating(db, "Drama", 1, 5);
+        addRating(db, "ОБЖ", 1, 4);
+        addRating(db, "ОБЖ", 1, 5);
+        addRating(db, "ОБЖ", 1, 3);
+        addRating(db, "ОБЖ", 1, 4);
+        addRating(db, "ОБЖ", 1, 5);
+
+
+
+
+        addRating(db, "История", 2, 5);
+        addRating(db, "История", 2, 3);
+        addRating(db, "История", 2, 4);
+        addRating(db, "История", 2, 5);
+        addRating(db, "История", 2, 3);
+
+        addRating(db, "Биология", 2, 3);
+        addRating(db, "Биология", 2, 5);
+        addRating(db, "Биология", 2, 4);
+        addRating(db, "Биология", 2, 3);
+        addRating(db, "Биология", 2, 5);
+
+        addRating(db, "Английский яз.", 2, 4);
+        addRating(db, "Английский яз.", 2, 3);
+        addRating(db, "Английский яз.", 2, 5);
+        addRating(db, "Английский яз.", 2, 4);
+        addRating(db, "Английский яз.", 2, 3);
     }
 
 //    public void deleteDatabase() {

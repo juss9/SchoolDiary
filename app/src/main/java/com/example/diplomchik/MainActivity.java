@@ -55,25 +55,25 @@ public class MainActivity extends AppCompatActivity {
         clearScheduleData(db,2);
 
         // Добавляем записи в таблицу расписания на неделю для первого семестра
-        addScheduleData(db, 1, "Monday", "Math", "8:00 AM");
-        addScheduleData(db, 1, "Monday", "Physics", "9:00 AM");
-        addScheduleData(db, 1, "Monday", "Chemistry", "10:00 AM");
+        addScheduleData(db, 1, "Понедельник", "Математика", "8:00 AM");
+        addScheduleData(db, 1, "Понедельник", "Физика", "9:00 AM");
+        addScheduleData(db, 1, "Понедельник", "Геометрия", "10:00 AM");
 
-        addScheduleData(db, 1, "Tuesday", "History", "8:00 AM");
-        addScheduleData(db, 1, "Tuesday", "Biology", "9:00 AM");
-        addScheduleData(db, 1, "Tuesday", "English", "10:00 AM");
+        addScheduleData(db, 1, "Вторник", "История", "8:00 AM");
+        addScheduleData(db, 1, "Вторник", "Биология", "9:00 AM");
+        addScheduleData(db, 1, "Вторник", "ОБЖ", "10:00 AM");
 
-        addScheduleData(db, 1, "Wednesday", "Math", "8:00 AM");
-        addScheduleData(db, 1, "Wednesday", "Physics", "9:00 AM");
-        addScheduleData(db, 1, "Wednesday", "Chemistry", "10:00 AM");
+        addScheduleData(db, 1, "Среда", "Математика", "8:00 AM");
+        addScheduleData(db, 1, "Среда", "Литература", "9:00 AM");
+        addScheduleData(db, 1, "Среда", "Экономика", "10:00 AM");
 
-        addScheduleData(db, 1, "Thursday", "Geography", "8:00 AM");
-        addScheduleData(db, 1,"Thursday", "Computer Science", "9:00 AM");
-        addScheduleData(db, 1, "Thursday","Physical Education", "10:00 AM");
+        addScheduleData(db, 1, "Четверг", "География", "8:00 AM");
+        addScheduleData(db, 1,"Четверг", "Информатика", "9:00 AM");
+        addScheduleData(db, 1, "Четверг","Физ-ра", "10:00 AM");
 
-        addScheduleData(db, 1, "Friday", "Art", "8:00 AM");
-        addScheduleData(db, 1, "Friday","Music", "9:00 AM");
-        addScheduleData(db, 1, "Friday","Drama", "10:00 AM");
+        addScheduleData(db, 1, "Пятница", "ИЗО", "8:00 AM");
+        addScheduleData(db, 1, "Пятница","Музыка", "9:00 AM");
+        addScheduleData(db, 1, "Пятница","История", "10:00 AM");
 
         // Добавляем остальное расписание для первого семестра
 
@@ -86,25 +86,25 @@ public class MainActivity extends AppCompatActivity {
         db.insert(DBContract.HomeworkEntry.TABLE_NAME, null, values);
 
         // Добавляем записи в таблицу расписания на неделю для второго семестра
-        addScheduleData(db, 2, "Monday", "Algebra", "8:00 AM");
-        addScheduleData(db, 2, "Monday","Geometry", "9:00 AM");
-        addScheduleData(db, 2, "Monday","Statistics", "10:00 AM");
+        addScheduleData(db, 2, "Понедельник", "Алгебра", "8:00 AM");
+        addScheduleData(db, 2, "Понедельник","Геометрия", "9:00 AM");
+        addScheduleData(db, 2, "Понедельник","Русский язык", "10:00 AM");
 
-        addScheduleData(db, 2, "Tuesday", "Economics", "8:00 AM");
-        addScheduleData(db, 2, "Tuesday","Political Science", "9:00 AM");
-        addScheduleData(db, 2, "Tuesday","Sociology", "10:00 AM");
+        addScheduleData(db, 2, "Вторник", "Экономика", "8:00 AM");
+        addScheduleData(db, 2, "Вторник","Обществознание", "9:00 AM");
+        addScheduleData(db, 2, "Вторник","Правоведение", "10:00 AM");
 
-        addScheduleData(db, 2, "Wednesday", "Literature", "8:00 AM");
-        addScheduleData(db, 2, "Wednesday","Philosophy", "9:00 AM");
-        addScheduleData(db, 2, "Wednesday","Psychology", "10:00 AM");
+        addScheduleData(db, 2, "Среда", "Литература", "8:00 AM");
+        addScheduleData(db, 2, "Среда","Психология", "9:00 AM");
+        addScheduleData(db, 2, "Среда","Психология", "10:00 AM");
 
-        addScheduleData(db, 2, "Thursday", "Foreign Language", "8:00 AM");
-        addScheduleData(db, 2, "Thursday","Cultural Studies", "9:00 AM");
-        addScheduleData(db, 2, "Thursday","Ethics", "10:00 AM");
+        addScheduleData(db, 2, "Четверг", "Английский язык", "8:00 AM");
+        addScheduleData(db, 2, "Четверг","Русский язык", "9:00 AM");
+        addScheduleData(db, 2, "Четверг","Литература", "10:00 AM");
 
-        addScheduleData(db, 2, "Friday", "Environmental Science", "8:00 AM");
-        addScheduleData(db, 2, "Friday","Health Education", "9:00 AM");
-        addScheduleData(db, 2, "Friday","Technology", "10:00 AM");
+        addScheduleData(db, 2, "Пятница", "Физ-ра", "8:00 AM");
+        addScheduleData(db, 2, "Пятница","ОБЖ", "9:00 AM");
+        addScheduleData(db, 2, "Пятница","Технология", "10:00 AM");
 
     }
 
